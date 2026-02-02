@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+        content="width=390, initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+  <title>Happy Valentine’s ❤️</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', Arial, sans-serif;
+      background: radial-gradient(circle at top, #3a1c71, #1a102f, #0b0618);
+      color: white;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .app {
+      width: 390px;
+      height: 100vh;
+      margin: 0 auto;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .app::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle, rgba(255,182,193,0.12), transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    h1, p, footer, .slideshow, .letter-btn {
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      font-size: 2.4em;
+      margin-top: 25px;
+      text-shadow: 0 0 12px rgba(255,182,193,0.5);
+    }
+
+    p {
+      font-size: 1.15em;
+      opacity: 0.95;
+    }
+
+    /* 🖼️ SLIDESHOW */
+    .slideshow {
+      width: 350px;
+      height: 350px;
+      margin: 20px auto;
+      position: relative;
+    }
+
+    .slideshow img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 22px;
+      opacity: 0;
+      transition: opacity 1.8s ease-in-out;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6),
+                  0 0 25px rgba(255,182,193,0.25);
+    }
+
+    .slideshow img.active {
+      opacity: 1;
+    }
+
+    /* 💌 LETTER BUTTON */
+    .letter-btn {
+      margin-top: 20px;
+      padding: 12px 22px;
+      font-size: 1em;
+      border-radius: 25px;
+      border: none;
+      background: linear-gradient(45deg, #ff8fb1, #ff5f9e);
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(255,143,177,0.6);
+    }
+
+    /* 📜 LETTER MODAL */
+    .letter-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+
+    .letter {
+      background: #fff;
+      color: #333;
+      width: 320px;
+      padding: 20px;
+      border-radius: 15px;
+      text-align: left;
+      font-size: 0.95em;
+      animation: fadeIn 0.6s ease;
+    }
+
+    .letter h3 {
+      text-align: center;
+      color: #ff5f9e;
+    }
+
+    .close {
+      text-align: center;
+      margin-top: 15px;
+      font-weight: bold;
+      color: #ff5f9e;
+      cursor: pointer;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* 💐 FLOWERS */
+    .flower {
+      position: absolute;
+      font-size: 32px;
+      animation: pop 4s ease forwards;
+      z-index: 3;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0); opacity: 0; }
+      20% { transform: scale(1.2); opacity: 1; }
+      100% { transform: scale(0.8); opacity: 0; }
+    }
+
+    /* ❤️ FLOATING HEARTS */
+    .heart {
+      position: absolute;
+      bottom: -20px;
+      font-size: 18px;
+      color: rgba(255,105,180,0.8);
+      animation: floatUp 7s linear infinite;
+      z-index: 1;
+    }
+
+    @keyframes floatUp {
+      from { transform: translateY(0); opacity: 1; }
+      to { transform: translateY(-110vh); opacity: 0; }
+    }
+
+    /* ✨ SPARKLES */
+    .sparkle {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0;
+      animation: sparkle 5s ease-in-out infinite;
+      z-index: 1;
+    }
+
+    @keyframes sparkle {
+      0% { opacity: 0; }
+      50% { opacity: 0.8; }
+      100% { opacity: 0; }
+    }
+
+    footer {
+      margin-top: 25px;
+      font-size: 1.05em;
+      opacity: 0.9;
+    }
+
+    /* ▶️ TAP OVERLAY */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle, #1a102f, #0b0618);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      cursor: pointer;
+    }
+
+    .overlay h2 {
+      font-size: 1.6em;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="overlay" onclick="startExperience()">
+  <h2>Tap to open ❤️</h2>
+</div>
+
+<div class="app">
+
+  <h1>Happy Valentine’s Day ❤️</h1>
+  <p>To the one who holds my heart</p>
+
+  <div class="slideshow">
+    <img src="photo1.jpg" class="active">
+    <img src="photo2.jpg">
+    <img src="photo3.jpg">
+    <img src="photo4.jpg">
+    <img src="photo5.jpg">
+    <img src="photo6.jpg">
+  </div>
+
+  <button class="letter-btn" onclick="openLetter()">Read My Letter 💌</button>
+
+  <footer>Forever & always, it’s you 💕</footer>
+</div>
+
+<!-- 📜 LETTER -->
+<div class="letter-modal" id="letterModal">
+  <div class="letter">
+    <h3>My Love ❤️</h3>
+    <p>
+Every photo here is a memory I treasure
+that we had created together. Never would
+I have expected the day would come for us
+to be together. I hope that this will last a life 
+time and to be able to create more memories 
+together.
+
+I never thought I would find someone who feels
+so much like home, someone who makes my heart
+feel safe, warm, and understood.
+
+Thank you for being my comfort, my happiness,
+and my favorite person to love.
+No matter where life takes us,
+my heart will always choose you.
+
+Happy Valentine’s Day.
+I love you, always langga ❤️
+    </p>
+    <div class="close" onclick="closeLetter()">Close</div>
+  </div>
+</div>
+
+<audio id="music" loop>
+  <source src="softspot.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+function startExperience() {
+  document.querySelector(".overlay").style.display = "none";
+  document.getElementById("music").play();
+}
+
+/* LETTER */
+function openLetter() {
+  document.getElementById("letterModal").style.display = "flex";
+  showFlowers();
+}
+function closeLetter() {
+  document.getElementById("letterModal").style.display = "none";
+}
+
+/* FLOWERS */
+function showFlowers() {
+  for (let i = 0; i < 6; i++) {
+    const flower = document.createElement("div");
+    flower.className = "flower";
+    flower.innerHTML = "💐";
+    flower.style.left = Math.random() * 320 + "px";
+    flower.style.top = Math.random() * 400 + "px";
+    document.querySelector(".app").appendChild(flower);
+    setTimeout(() => flower.remove(), 4000);
+  }
+}
+
+/* SLIDESHOW */
+let slideIndex = 0;
+const slides = document.querySelectorAll(".slideshow img");
+setInterval(() => {
+  slides[slideIndex].classList.remove("active");
+  slideIndex = (slideIndex + 1) % slides.length;
+  slides[slideIndex].classList.add("active");
+}, 3500);
+
+/* FLOATING HEARTS */
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random() * 390 + "px";
+  document.querySelector(".app").appendChild(heart);
+  setTimeout(() => heart.remove(), 7000);
+}, 800);
+
+/* SPARKLES */
+setInterval(() => {
+  const sparkle = document.createElement("div");
+  sparkle.className = "sparkle";
+  sparkle.style.left = Math.random() * 390 + "px";
+  sparkle.style.top = Math.random() * window.innerHeight + "px";
+  document.querySelector(".app").appendChild(sparkle);
+  setTimeout(() => sparkle.remove(), 5000);
+}, 600);
+</script>
+
+</body>
+</html>
